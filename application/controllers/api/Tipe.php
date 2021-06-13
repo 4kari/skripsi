@@ -4,22 +4,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 require APPPATH . 'libraries/REST_Controller.php';
 require APPPATH . 'libraries/Format.php';
-class Sasaran extends REST_Controller{
+class Tipe extends REST_Controller{
     public function __construct(){
         parent::__construct();
-        $this->load->model('Sasaran_model','mSasaran');
+        $this->load->model('Tipe_model','tm');
     }
     public function index_get(){
         $id = $this->get('id');
         if ($id == null) {
-            $Sasaran = $this->mSasaran->getSasaran();
+            $Tipe = $this->tm->getTipe();
         } else{
-            $Sasaran = $this->mSasaran->getSasaran($id);
+            $Tipe = $this->tm->getTipe($id);
         }
-        if ($Sasaran){
+        if ($Tipe){
             $this->response([
                 'status' => true,
-                'data' =>$Sasaran
+                'data' =>$Tipe
             ], REST_Controller::HTTP_OK);
         } else {
             $this->response([
@@ -38,7 +38,7 @@ class Sasaran extends REST_Controller{
                 'message' => 'tambahkan id untuk hapus'
             ], REST_Controller::HTTP_BAD_REQUEST);
         } else {
-            if ($this->mSasaran->deleteSasaran($id)>0){
+            if ($this->tm->deleteTipe($id)>0){
                 //ok
                 $this->response([
                     'status' => true,
@@ -55,33 +55,31 @@ class Sasaran extends REST_Controller{
     }
     public function index_post(){
         $data=[
-            'keterangan' => $this->post('keterangan'),
-            'tipe' => $this->post('tipe')
+            'keterangan' => $this->post('keterangan')
         ];
         
-        if ($this->mSasaran->createSasaran($data)>0){
+        if ($this->tm->createTipe($data)>0){
             $this->response([
                 'status' => true,
-                'message' => 'Sasaran baru berhasil dibuat'
+                'message' => 'Tipe baru berhasil dibuat'
             ], REST_Controller::HTTP_CREATED);
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'Gagal menambahkan Sasaran baru'
+                'message' => 'Gagal menambahkan tipe baru'
             ], REST_Controller::HTTP_BAD_REQUEST);
         }
     }
     public function index_put(){
         $id=$this->put('id');
         $data=[
-            'keterangan' => $this->put('keterangan'),
-            'tipe' => $this->put('tipe')
+            'keterangan' => $this->put('keterangan')
         ];
 
-        if ($this->mSasaran->updateSasaran($data,$id)>0){
+        if ($this->tm->updateTipe($data,$id)>0){
             $this->response([
                 'status' => true,
-                'message' => 'Sasaran berhasil di perbarui'
+                'message' => 'Tipe berhasil di perbarui'
             ], REST_Controller::HTTP_NO_CONTENT);
         } else {
             $this->response([
