@@ -57,6 +57,7 @@ class Skripsi extends REST_Controller{
         $data=[
             'judul' => $this->post('judul'),
             'abstrak' => $this->post('abstrak'),
+            'topik' => $this->post('topik'),
             'nim' => $this->post('nim'),
             'pembimbing_1' => $this->post('pembimbing_1'),
             'pembimbing_2' => $this->post('pembimbing_2'),
@@ -85,6 +86,7 @@ class Skripsi extends REST_Controller{
         $data=[
             'judul' => $this->put('judul'),
             'abstrak' => $this->put('abstrak'),
+            'topik' => $this->put('topik'),
             'nim' => $this->put('nim'),
             'pembimbing_1' => $this->put('pembimbing_1'),
             'pembimbing_2' => $this->put('pembimbing_2'),

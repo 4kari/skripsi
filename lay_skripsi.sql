@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 13, 2021 at 07:52 AM
+-- Generation Time: Aug 04, 2021 at 11:00 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.19
 
@@ -34,13 +34,6 @@ CREATE TABLE `penilaian` (
   `kode_penilaian` int(2) NOT NULL,
   `nilai` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `penilaian`
---
-
-INSERT INTO `penilaian` (`id`, `id_skripsi`, `penilai`, `kode_penilaian`, `nilai`) VALUES
-(1, 2, '170411100099', 3, 10);
 
 -- --------------------------------------------------------
 
@@ -80,25 +73,26 @@ INSERT INTO `sasaran` (`id`, `keterangan`, `tipe`) VALUES
 
 CREATE TABLE `skripsi` (
   `id` int(11) NOT NULL,
-  `judul` varchar(64) NOT NULL,
-  `abstrak` varchar(128) NOT NULL,
+  `judul` varchar(64) DEFAULT NULL,
+  `topik` int(11) NOT NULL,
+  `abstrak` varchar(128) DEFAULT NULL,
   `nim` varchar(12) NOT NULL,
-  `pembimbing_1` varchar(18) NOT NULL,
-  `pembimbing_2` varchar(18) NOT NULL,
-  `penguji_1` varchar(18) NOT NULL,
-  `penguji_2` varchar(18) NOT NULL,
-  `penguji_3` varchar(18) NOT NULL,
+  `pembimbing_1` varchar(18) DEFAULT NULL,
+  `pembimbing_2` varchar(18) DEFAULT NULL,
+  `penguji_1` varchar(18) DEFAULT NULL,
+  `penguji_2` varchar(18) DEFAULT NULL,
+  `penguji_3` varchar(18) DEFAULT NULL,
   `status` int(2) NOT NULL,
-  `nilai` int(3) NOT NULL,
-  `berkas` varchar(32) NOT NULL
+  `nilai` int(3) DEFAULT NULL,
+  `berkas` varchar(32) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `skripsi`
 --
 
-INSERT INTO `skripsi` (`id`, `judul`, `abstrak`, `nim`, `pembimbing_1`, `pembimbing_2`, `penguji_1`, `penguji_2`, `penguji_3`, `status`, `nilai`, `berkas`) VALUES
-(2, 'coba', 'coba abstrak', '170411100099', '170411100099', '170411100099', '170411100099', '170411100099', '170411100099', 2, 0, 'none.pdf');
+INSERT INTO `skripsi` (`id`, `judul`, `topik`, `abstrak`, `nim`, `pembimbing_1`, `pembimbing_2`, `penguji_1`, `penguji_2`, `penguji_3`, `status`, `nilai`, `berkas`) VALUES
+(3, 'kosong', 1, 'percobaan', '170411100099', '170411100042', '170411100042', '170411100042', '170411100042', '170411100042', 1, 0, '');
 
 -- --------------------------------------------------------
 
@@ -116,6 +110,7 @@ CREATE TABLE `status` (
 --
 
 INSERT INTO `status` (`id`, `status`) VALUES
+(0, 'mengajukan topik'),
 (1, 'mendaftarkan skripsi'),
 (2, 'peserta seminar proposal'),
 (3, 'bimbingan skripsi'),
@@ -148,6 +143,25 @@ INSERT INTO `tipe` (`id`, `keterangan`) VALUES
 (2, 'seminar proposal'),
 (3, 'sidang skripsi');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `topik`
+--
+
+CREATE TABLE `topik` (
+  `id` int(11) NOT NULL,
+  `topik` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `topik`
+--
+
+INSERT INTO `topik` (`id`, `topik`) VALUES
+(1, 'Rekayasa Perangkat Lunak (RPL)'),
+(2, 'Citra');
+
 --
 -- Indexes for dumped tables
 --
@@ -172,7 +186,8 @@ ALTER TABLE `sasaran`
 --
 ALTER TABLE `skripsi`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `skripsi_status` (`status`);
+  ADD KEY `skripsi_status` (`status`),
+  ADD KEY `skripsi_topik` (`topik`);
 
 --
 -- Indexes for table `status`
@@ -184,6 +199,12 @@ ALTER TABLE `status`
 -- Indexes for table `tipe`
 --
 ALTER TABLE `tipe`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `topik`
+--
+ALTER TABLE `topik`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -206,19 +227,25 @@ ALTER TABLE `sasaran`
 -- AUTO_INCREMENT for table `skripsi`
 --
 ALTER TABLE `skripsi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `status`
 --
 ALTER TABLE `status`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `tipe`
 --
 ALTER TABLE `tipe`
   MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `topik`
+--
+ALTER TABLE `topik`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -241,7 +268,8 @@ ALTER TABLE `sasaran`
 -- Constraints for table `skripsi`
 --
 ALTER TABLE `skripsi`
-  ADD CONSTRAINT `skripsi_status` FOREIGN KEY (`status`) REFERENCES `status` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `skripsi_status` FOREIGN KEY (`status`) REFERENCES `status` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `skripsi_topik` FOREIGN KEY (`topik`) REFERENCES `topik` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
