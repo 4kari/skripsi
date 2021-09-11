@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2021 at 04:15 PM
+-- Generation Time: Sep 11, 2021 at 08:39 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.19
 
@@ -86,13 +86,6 @@ CREATE TABLE `skripsi` (
   `nilai` int(3) DEFAULT NULL,
   `berkas` varchar(32) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `skripsi`
---
-
-INSERT INTO `skripsi` (`id`, `judul`, `topik`, `abstrak`, `nim`, `pembimbing_1`, `pembimbing_2`, `penguji_1`, `penguji_2`, `penguji_3`, `status`, `nilai`, `berkas`) VALUES
-(3, 'kosong', 1, 'percobaan', '170411100099', '170411100042', '170411100042', '170411100042', '170411100042', '170411100042', 1, 0, '');
 
 -- --------------------------------------------------------
 
@@ -215,7 +208,7 @@ ALTER TABLE `topik`
 -- AUTO_INCREMENT for table `penilaian`
 --
 ALTER TABLE `penilaian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sasaran`
@@ -227,7 +220,7 @@ ALTER TABLE `sasaran`
 -- AUTO_INCREMENT for table `skripsi`
 --
 ALTER TABLE `skripsi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `status`
