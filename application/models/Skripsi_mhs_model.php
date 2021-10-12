@@ -14,7 +14,6 @@ class Skripsi_mhs_model extends CI_Model{
         } else {
             $skripsi = $this->db->get_where('Skripsi', ['nim' => $nim])->result_array();
         }
-        var_dump($skripsi);
         $data = [];
         if ($skripsi){
             for ($i=0;$i<count($skripsi);$i++){
