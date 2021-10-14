@@ -11,10 +11,13 @@ class Skripsi extends REST_Controller{
     }
     public function index_get(){
         $id = $this->get('id');
-        if ($id == null) {
-            $Skripsi = $this->mSkripsi->getSkripsi();
+        $nim = $this->get('nim');
+        if ($id) {
+            $Skripsi = $this->mSkripsi->getSkripsiById($id);
+        }elseif($nim){
+            $Skripsi = $this->mSkripsi->getSkripsiByNim($nim);
         } else{
-            $Skripsi = $this->mSkripsi->getSkripsi($id);
+            $Skripsi = $this->mSkripsi->getSkripsi();
         }
         if ($Skripsi){
             $this->response([
