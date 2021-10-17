@@ -63,6 +63,21 @@ class Skripsi_model extends CI_Model{
         }
         return $data;
     }
+    public function getSkripsiByStatus($status=null){
+        $data = $this->db->get_where('Skripsi', ['status' => $status])->result_array();
+        $topik =  json_decode($this->curl->simple_get('http://localhost/microservice/skripsi/api/topik/', array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
+        if ($data){
+            for ($i=0;$i<count($data);$i++){
+                for ($j=0;$j<count($topik);$j++){
+                    if($data[$i]['topik']==$topik[$j]['id']){
+                        $data[$i]['topikid']=$topik[$j]['id'];
+                        $data[$i]['topik']=$topik[$j]['topik'];
+                    }
+                }
+            }
+        }
+        return $data;
+    }
     public function deleteSkripsi($id){
         //data master tidak bisa dihapus
         $this->db->delete('Skripsi', ['id' => $id]);
