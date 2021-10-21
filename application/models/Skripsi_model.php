@@ -36,7 +36,7 @@ class Skripsi_model extends CI_Model{
             for ($i=0;$i<count($data);$i++){
                 for ($j=0;$j<count($topik);$j++){
                     if($data[$i]['topik']==$topik[$j]['id']){
-                        $data[$i]['topik']=$topik[$j]['topik'];
+                        $data[$i]['ktopik']=$topik[$j]['topik'];
                     }
                 }
                 for ($j=0;$j<count($dosen);$j++){
