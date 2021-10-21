@@ -1,26 +1,37 @@
 <?php
 class Skripsi_model extends CI_Model{
     public function getSkripsi(){
-        return $this->db->get('Skripsi')->result_array();
+        $skripsi = $this->db->get('Skripsi')->result_array();
+        $data = $this->olahSkripsi($skripsi);
+        return $data;
     }
     public function getSkripsiByid($id=null){
-        return $this->db->get_where('Skripsi', ['id' => $id])->result_array();
+        $skripsi = $this->db->get_where('Skripsi', ['id' => $id])->result_array();
+        $data = $this->olahSkripsi($skripsi);
+        return $data;
     }
     public function getSkripsiByNim($nim=null){
+        $skripsi = $this->db->get_where('Skripsi', ['nim' => $nim])->result_array();
+        $data = $this->olahSkripsi($skripsi);
+        return $data;
+    }
+    public function getSkripsiByStatus($status=null){
+        $skripsi = $this->db->get_where('Skripsi', ['status' => $status])->result_array();
+        $data = $this->olahSkripsi($skripsi);
+        return $data;
+    }
+    private function olahSkripsi($skripsi){
         // $topik =  json_decode($this->curl->simple_get('http://10.5.12.21/skripsi/api/topik/', array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
         // $dosen = json_decode($this->curl->simple_get('http://10.5.12.26/user/api/dosen/', array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
         // $status = json_decode($this->curl->simple_get('http://10.5.12.21/skripsi/api/status/', array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
-
         $topik =  json_decode($this->curl->simple_get('http://localhost/microservice/skripsi/api/topik/', array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
         $dosen = json_decode($this->curl->simple_get('http://localhost/microservice/user/api/dosen/', array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
         $status = json_decode($this->curl->simple_get('http://localhost/microservice/skripsi/api/status/', array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
-        $skripsi = $this->db->get_where('Skripsi', ['nim' => $nim])->result_array();
+
         $data = [];
         if ($skripsi){
             for ($i=0;$i<count($skripsi);$i++){
-                if ($skripsi[$i]['nim']==$nim){
-                    array_push($data,$skripsi[$i]);
-                }
+                array_push($data,$skripsi[$i]);
             }
             for ($i=0;$i<count($data);$i++){
                 for ($j=0;$j<count($topik);$j++){
@@ -57,21 +68,6 @@ class Skripsi_model extends CI_Model{
                     if($data[$i]['status']==$status[$j]['id']){
                         $data[$i]['statusid']=$data[$i]['status'];
                         $data[$i]['status']=$status[$j]['status'];
-                    }
-                }
-            }
-        }
-        return $data;
-    }
-    public function getSkripsiByStatus($status=null){
-        $data = $this->db->get_where('Skripsi', ['status' => $status])->result_array();
-        $topik =  json_decode($this->curl->simple_get('http://localhost/microservice/skripsi/api/topik/', array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
-        if ($data){
-            for ($i=0;$i<count($data);$i++){
-                for ($j=0;$j<count($topik);$j++){
-                    if($data[$i]['topik']==$topik[$j]['id']){
-                        $data[$i]['topikid']=$topik[$j]['id'];
-                        $data[$i]['topik']=$topik[$j]['topik'];
                     }
                 }
             }
