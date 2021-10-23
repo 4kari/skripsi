@@ -21,12 +21,12 @@ class Skripsi_model extends CI_Model{
         return $data;
     }
     private function olahSkripsi($skripsi){
-        // $topik =  json_decode($this->curl->simple_get('http://10.5.12.21/skripsi/api/topik/', array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
         // $dosen = json_decode($this->curl->simple_get('http://10.5.12.26/user/api/dosen/', array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
-        // $status = json_decode($this->curl->simple_get('http://10.5.12.21/skripsi/api/status/', array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
-        $topik =  json_decode($this->curl->simple_get('http://localhost/microservice/skripsi/api/topik/', array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
+        // $dosen = json_decode($this->curl->simple_get('http://10.5.12.26/user/api/mahasiswa/', array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
+        $topik =  $this->db->get('topik')->result_array();
+        $status = $this->db->get('status')->result_array();
         $dosen = json_decode($this->curl->simple_get('http://localhost/microservice/user/api/dosen/', array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
-        $status = json_decode($this->curl->simple_get('http://localhost/microservice/skripsi/api/status/', array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
+        $mhs = json_decode($this->curl->simple_get('http://localhost/microservice/user/api/mahasiswa/', array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
 
         $data = [];
         if ($skripsi){
@@ -34,6 +34,11 @@ class Skripsi_model extends CI_Model{
                 array_push($data,$skripsi[$i]);
             }
             for ($i=0;$i<count($data);$i++){
+                for ($j=0;$j<count($mhs);$j++){
+                    if($data[$i]['nim']==$mhs[$j]['nim']){
+                        $data[$i]['nama']=$mhs[$j]['nama'];
+                    }
+                }
                 for ($j=0;$j<count($topik);$j++){
                     if($data[$i]['topik']==$topik[$j]['id']){
                         $data[$i]['ktopik']=$topik[$j]['topik'];
