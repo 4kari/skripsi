@@ -71,8 +71,7 @@ class Skripsi_model extends CI_Model{
                 }
                 for ($j=0;$j<count($status);$j++){
                     if($data[$i]['status']==$status[$j]['id']){
-                        $data[$i]['statusid']=$data[$i]['status'];
-                        $data[$i]['status']=$status[$j]['status'];
+                        $data[$i]['kstatus']=$status[$j]['status'];
                     }
                 }
             }
