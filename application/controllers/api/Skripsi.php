@@ -13,11 +13,14 @@ class Skripsi extends REST_Controller{
         $id = $this->get('id');
         $nim = $this->get('nim');
         $status = $this->get('status');
+        $nip = $this->get('nip');
         $Skripsi=[];
         if ($id!=NULL) {
             $Skripsi = $this->mSkripsi->getSkripsiById($id);
         } elseif($nim!=NULL){
             $Skripsi = $this->mSkripsi->getSkripsiByNim($nim);
+        } elseif($nip!=NULL){
+            $Skripsi = $this->mSkripsi->getSkripsiByNip1($nip);
         } elseif($status!=NULL){
             $Skripsi = $this->mSkripsi->getSkripsiByStatus($status);
         } else{

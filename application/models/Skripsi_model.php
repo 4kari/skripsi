@@ -10,6 +10,14 @@ class Skripsi_model extends CI_Model{
         $data = $this->olahSkripsi($skripsi);
         return $data;
     }
+    public function getSkripsiByNip1($nip=null){
+        $skripsi = $this->db->get_where('Skripsi', ['pembimbing_1' => $nip])->result_array();
+        if(!$skripsi){
+            $skripsi = $this->db->get_where('Skripsi', ['pembimbing_2' => $nip])->result_array();
+        }
+        $data = $this->olahSkripsi($skripsi);
+        return $data;
+    }
     public function getSkripsiByNim($nim=null){
         $skripsi = $this->db->get_where('Skripsi', ['nim' => $nim])->result_array();
         $data = $this->olahSkripsi($skripsi);
