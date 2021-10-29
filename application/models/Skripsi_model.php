@@ -11,9 +11,16 @@ class Skripsi_model extends CI_Model{
         return $data;
     }
     public function getSkripsiByNip1($nip=null){
-        $skripsi = $this->db->get_where('Skripsi', ['pembimbing_1' => $nip])->result_array();
-        if(!$skripsi){
-            $skripsi = $this->db->get_where('Skripsi', ['pembimbing_2' => $nip])->result_array();
+        $skripsi=[];
+        $s[0] = $this->db->get_where('Skripsi', ['pembimbing_1' => $nip])->result_array();
+        $s[1] = $this->db->get_where('Skripsi', ['pembimbing_2' => $nip])->result_array();
+        $s[2] = $this->db->get_where('Skripsi', ['penguji_1' => $nip])->result_array();
+        $s[3] = $this->db->get_where('Skripsi', ['penguji_2' => $nip])->result_array();
+        $s[4] = $this->db->get_where('Skripsi', ['penguji_3' => $nip])->result_array();
+        for ($i=0; $i<count($s);$i++){
+            for($j=0;$j<count($s[$i]);$j++){
+                array_push($skripsi,$s[$i][$j]);
+            }
         }
         $data = $this->olahSkripsi($skripsi);
         return $data;
