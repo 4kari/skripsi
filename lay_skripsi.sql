@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2021 at 08:39 AM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 7.4.19
+-- Waktu pembuatan: 31 Okt 2021 pada 15.42
+-- Versi server: 10.4.19-MariaDB
+-- Versi PHP: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `penilaian`
+-- Struktur dari tabel `penilaian`
 --
 
 CREATE TABLE `penilaian` (
@@ -38,7 +38,7 @@ CREATE TABLE `penilaian` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sasaran`
+-- Struktur dari tabel `sasaran`
 --
 
 CREATE TABLE `sasaran` (
@@ -48,7 +48,7 @@ CREATE TABLE `sasaran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `sasaran`
+-- Dumping data untuk tabel `sasaran`
 --
 
 INSERT INTO `sasaran` (`id`, `keterangan`, `tipe`) VALUES
@@ -68,7 +68,7 @@ INSERT INTO `sasaran` (`id`, `keterangan`, `tipe`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `skripsi`
+-- Struktur dari tabel `skripsi`
 --
 
 CREATE TABLE `skripsi` (
@@ -87,10 +87,19 @@ CREATE TABLE `skripsi` (
   `berkas` varchar(32) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `skripsi`
+--
+
+INSERT INTO `skripsi` (`id`, `judul`, `topik`, `abstrak`, `nim`, `pembimbing_1`, `pembimbing_2`, `penguji_1`, `penguji_2`, `penguji_3`, `status`, `nilai`, `berkas`) VALUES
+(1, NULL, 1, NULL, '170411100099', '170411100042', '170411100024', NULL, NULL, NULL, 1, NULL, NULL),
+(2, NULL, 1, NULL, '123', '170411100042', '170411100024', NULL, NULL, NULL, 1, NULL, NULL),
+(3, NULL, 1, NULL, '222', '170411100024', '170411100024', '170411100042', '170411100024', '170411100024', 5, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `status`
+-- Struktur dari tabel `status`
 --
 
 CREATE TABLE `status` (
@@ -99,16 +108,16 @@ CREATE TABLE `status` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `status`
+-- Dumping data untuk tabel `status`
 --
 
 INSERT INTO `status` (`id`, `status`) VALUES
 (0, 'mengajukan topik'),
 (1, 'mendaftarkan skripsi'),
-(2, 'peserta seminar proposal'),
+(2, 'seminar proposal'),
 (3, 'bimbingan skripsi'),
 (4, 'mengajukan sidang skripsi'),
-(5, 'peserta ujian sidang skripsi'),
+(5, 'ujian sidang skripsi'),
 (6, 'skripsi sedang dinilai'),
 (7, 'skripsi lulus'),
 (8, 'skripsi gagal'),
@@ -119,7 +128,7 @@ INSERT INTO `status` (`id`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipe`
+-- Struktur dari tabel `tipe`
 --
 
 CREATE TABLE `tipe` (
@@ -128,7 +137,7 @@ CREATE TABLE `tipe` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tipe`
+-- Dumping data untuk tabel `tipe`
 --
 
 INSERT INTO `tipe` (`id`, `keterangan`) VALUES
@@ -139,7 +148,7 @@ INSERT INTO `tipe` (`id`, `keterangan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `topik`
+-- Struktur dari tabel `topik`
 --
 
 CREATE TABLE `topik` (
@@ -148,7 +157,7 @@ CREATE TABLE `topik` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `topik`
+-- Dumping data untuk tabel `topik`
 --
 
 INSERT INTO `topik` (`id`, `topik`) VALUES
@@ -160,7 +169,7 @@ INSERT INTO `topik` (`id`, `topik`) VALUES
 --
 
 --
--- Indexes for table `penilaian`
+-- Indeks untuk tabel `penilaian`
 --
 ALTER TABLE `penilaian`
   ADD PRIMARY KEY (`id`),
@@ -168,14 +177,14 @@ ALTER TABLE `penilaian`
   ADD KEY `penilaian_skripsi` (`id_skripsi`);
 
 --
--- Indexes for table `sasaran`
+-- Indeks untuk tabel `sasaran`
 --
 ALTER TABLE `sasaran`
   ADD PRIMARY KEY (`id`),
   ADD KEY `sasaran_tipe` (`tipe`);
 
 --
--- Indexes for table `skripsi`
+-- Indeks untuk tabel `skripsi`
 --
 ALTER TABLE `skripsi`
   ADD PRIMARY KEY (`id`),
@@ -183,82 +192,82 @@ ALTER TABLE `skripsi`
   ADD KEY `skripsi_topik` (`topik`);
 
 --
--- Indexes for table `status`
+-- Indeks untuk tabel `status`
 --
 ALTER TABLE `status`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tipe`
+-- Indeks untuk tabel `tipe`
 --
 ALTER TABLE `tipe`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `topik`
+-- Indeks untuk tabel `topik`
 --
 ALTER TABLE `topik`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `penilaian`
+-- AUTO_INCREMENT untuk tabel `penilaian`
 --
 ALTER TABLE `penilaian`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `sasaran`
+-- AUTO_INCREMENT untuk tabel `sasaran`
 --
 ALTER TABLE `sasaran`
   MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `skripsi`
+-- AUTO_INCREMENT untuk tabel `skripsi`
 --
 ALTER TABLE `skripsi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `status`
+-- AUTO_INCREMENT untuk tabel `status`
 --
 ALTER TABLE `status`
   MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `tipe`
+-- AUTO_INCREMENT untuk tabel `tipe`
 --
 ALTER TABLE `tipe`
   MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `topik`
+-- AUTO_INCREMENT untuk tabel `topik`
 --
 ALTER TABLE `topik`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `penilaian`
+-- Ketidakleluasaan untuk tabel `penilaian`
 --
 ALTER TABLE `penilaian`
   ADD CONSTRAINT `penilaian_sasaran` FOREIGN KEY (`kode_penilaian`) REFERENCES `sasaran` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `penilaian_skripsi` FOREIGN KEY (`id_skripsi`) REFERENCES `skripsi` (`id`);
 
 --
--- Constraints for table `sasaran`
+-- Ketidakleluasaan untuk tabel `sasaran`
 --
 ALTER TABLE `sasaran`
   ADD CONSTRAINT `sasaran_tipe` FOREIGN KEY (`tipe`) REFERENCES `tipe` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `skripsi`
+-- Ketidakleluasaan untuk tabel `skripsi`
 --
 ALTER TABLE `skripsi`
   ADD CONSTRAINT `skripsi_status` FOREIGN KEY (`status`) REFERENCES `status` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
