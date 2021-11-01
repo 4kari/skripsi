@@ -37,7 +37,7 @@ class Skripsi_model extends CI_Model{
     }
     private function olahSkripsi($skripsi){
         // $dosen = json_decode($this->curl->simple_get('http://10.5.12.26/user/api/dosen/', array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
-        // $dosen = json_decode($this->curl->simple_get('http://10.5.12.26/user/api/mahasiswa/', array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
+        // $mhs = json_decode($this->curl->simple_get('http://10.5.12.26/user/api/mahasiswa/', array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
         $topik =  $this->db->get('topik')->result_array();
         $status = $this->db->get('status')->result_array();
         $dosen = json_decode($this->curl->simple_get('http://localhost/microservice/user/api/dosen/', array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
