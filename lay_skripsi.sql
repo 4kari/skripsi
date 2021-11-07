@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 31 Okt 2021 pada 15.42
+-- Waktu pembuatan: 07 Nov 2021 pada 13.35
 -- Versi server: 10.4.19-MariaDB
 -- Versi PHP: 7.4.19
 
@@ -164,6 +164,20 @@ INSERT INTO `topik` (`id`, `topik`) VALUES
 (1, 'Rekayasa Perangkat Lunak (RPL)'),
 (2, 'Citra');
 
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `validasi`
+--
+
+CREATE TABLE `validasi` (
+  `id` int(11) NOT NULL,
+  `id_skripsi` int(11) NOT NULL,
+  `dosen_1` varchar(18) DEFAULT NULL,
+  `dosen_2` varchar(18) DEFAULT NULL,
+  `tipe` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Indexes for dumped tables
 --
@@ -210,6 +224,12 @@ ALTER TABLE `topik`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `validasi`
+--
+ALTER TABLE `validasi`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -248,6 +268,12 @@ ALTER TABLE `tipe`
 --
 ALTER TABLE `topik`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `validasi`
+--
+ALTER TABLE `validasi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
