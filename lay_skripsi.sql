@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Nov 2021 pada 13.35
+-- Waktu pembuatan: 08 Nov 2021 pada 12.12
 -- Versi server: 10.4.19-MariaDB
 -- Versi PHP: 7.4.19
 
@@ -143,7 +143,9 @@ CREATE TABLE `tipe` (
 INSERT INTO `tipe` (`id`, `keterangan`) VALUES
 (1, 'bimbingan'),
 (2, 'seminar proposal'),
-(3, 'sidang skripsi');
+(3, 'sidang skripsi'),
+(4, 'lulus sempro'),
+(5, 'lulus sidang');
 
 -- --------------------------------------------------------
 
@@ -261,7 +263,7 @@ ALTER TABLE `status`
 -- AUTO_INCREMENT untuk tabel `tipe`
 --
 ALTER TABLE `tipe`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `topik`

@@ -60,7 +60,7 @@ class Validasi extends REST_Controller{
     }
     public function index_post(){
         $data=[
-            'keterangan' => $this->post('keterangan'),
+            'id_skripsi' => $this->post('id_skripsi'),
             'tipe' => $this->post('tipe')
         ];
         
