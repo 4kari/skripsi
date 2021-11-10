@@ -79,8 +79,11 @@ class Validasi extends REST_Controller{
     public function index_put(){
         $id=$this->put('id');
         $data=[
-            'keterangan' => $this->put('keterangan'),
-            'tipe' => $this->put('tipe')
+            'pembimbing_1' => $this->put('pembimbing_1'),
+            'pembimbing_2' => $this->put('pembimbing_2'),
+            'penguji_1' => $this->put('penguji_1'),
+            'penguji_2' => $this->put('penguji_2'),
+            'penguji_3' => $this->put('penguji_3')
         ];
 
         if ($this->mValidasi->updateValidasi($data,$id)>0){
