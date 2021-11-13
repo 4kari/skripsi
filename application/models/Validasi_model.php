@@ -9,17 +9,6 @@ class Validasi_model extends CI_Model{
     public function getValidasiBySkripsi($id){
         return $this->db->get_where('validasi',['id_skripsi'=>$id])->result_array();
     }
-    public function olahByTipe($data){
-        $hasil = [[],[]];
-        for ($i=0;$i<count($data);$i++){
-            if($data[$i]['tipe']==2){
-                array_push($hasil[0],$data[$i]);
-            }elseif($post[$i]['tipe']==3){
-                array_push($hasil[1],$data[$i]);
-            }
-        }
-        return $hasil;
-    }
     public function deleteValidasi($id){
         //data master tidak bisa dihapus
         $this->db->delete('Validasi', ['id' => $id]);

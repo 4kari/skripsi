@@ -20,7 +20,6 @@ class Validasi extends REST_Controller{
             $Validasi = $this->mValidasi->getValidasi();
         }
         $data=$Validasi;
-        $Validasi = $this->mValidasi->olahByTipe($data);
         if ($Validasi){
             $this->response([
                 'status' => true,
