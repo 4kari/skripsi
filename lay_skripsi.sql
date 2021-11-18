@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 08 Nov 2021 pada 12.12
+-- Waktu pembuatan: 18 Nov 2021 pada 14.30
 -- Versi server: 10.4.19-MariaDB
 -- Versi PHP: 7.4.19
 
@@ -92,9 +92,9 @@ CREATE TABLE `skripsi` (
 --
 
 INSERT INTO `skripsi` (`id`, `judul`, `topik`, `abstrak`, `nim`, `pembimbing_1`, `pembimbing_2`, `penguji_1`, `penguji_2`, `penguji_3`, `status`, `nilai`, `berkas`) VALUES
-(1, NULL, 1, NULL, '170411100099', '170411100042', '170411100024', NULL, NULL, NULL, 1, NULL, NULL),
-(2, NULL, 1, NULL, '123', '170411100042', '170411100024', NULL, NULL, NULL, 1, NULL, NULL),
-(3, NULL, 1, NULL, '222', '170411100024', '170411100024', '170411100042', '170411100024', '170411100024', 5, NULL, NULL);
+(1, NULL, 1, NULL, '170411100099', '170411100042', '170411100024', NULL, NULL, NULL, 1, NULL, 'percobaan'),
+(2, NULL, 1, NULL, '170411100119', '170411100042', '170411100024', NULL, NULL, NULL, 1, NULL, NULL),
+(3, NULL, 1, NULL, '170411100122', '170411100024', '170411100024', '170411100042', '170411100024', '170411100024', 5, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -175,10 +175,20 @@ INSERT INTO `topik` (`id`, `topik`) VALUES
 CREATE TABLE `validasi` (
   `id` int(11) NOT NULL,
   `id_skripsi` int(11) NOT NULL,
-  `dosen_1` varchar(18) DEFAULT NULL,
-  `dosen_2` varchar(18) DEFAULT NULL,
+  `pembimbing_1` varchar(18) DEFAULT NULL,
+  `pembimbing_2` varchar(18) DEFAULT NULL,
+  `penguji_1` varchar(18) DEFAULT NULL,
+  `penguji_2` varchar(18) DEFAULT NULL,
+  `penguji_3` varchar(18) DEFAULT NULL,
   `tipe` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `validasi`
+--
+
+INSERT INTO `validasi` (`id`, `id_skripsi`, `pembimbing_1`, `pembimbing_2`, `penguji_1`, `penguji_2`, `penguji_3`, `tipe`) VALUES
+(2, 1, '170411100042', '170411100024', NULL, NULL, NULL, 2);
 
 --
 -- Indexes for dumped tables
@@ -275,7 +285,7 @@ ALTER TABLE `topik`
 -- AUTO_INCREMENT untuk tabel `validasi`
 --
 ALTER TABLE `validasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
