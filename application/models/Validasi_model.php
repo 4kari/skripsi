@@ -24,7 +24,7 @@ class Validasi_model extends CI_Model{
                 $found=TRUE;
             }
             if($jadwal && $found===FALSE){
-                foreach($jadwal as $j){
+                foreach($jadwal['data'] as $j){
                     if($j['tipe']==$v['tipe']-1){
                         $found=TRUE;
                     }
