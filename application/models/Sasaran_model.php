@@ -1,10 +1,10 @@
 <?php
 class Sasaran_model extends CI_Model{
-    public function getSasaran($id=null){
-        if ($id === null){
+    public function getSasaran($tipe=null){
+        if ($tipe === null){
             return $this->db->get('Sasaran')->result_array();
         } else {
-            return $this->db->get_where('Sasaran', ['id' => $id])->row_array();
+            return $this->db->get_where('Sasaran', ['tipe' => $tipe])->result_array();
         }
     }
     public function deleteSasaran($id){

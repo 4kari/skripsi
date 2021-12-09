@@ -11,11 +11,8 @@ class Penilaian extends REST_Controller{
     }
     public function index_get(){
         $id = $this->get('id');
-        if ($id == null) {
-            $Penilaian = $this->mPenilaian->getPenilaian();
-        } else{
-            $Penilaian = $this->mPenilaian->getPenilaian($id);
-        }
+        $penilai = $this->get('penilai');
+        $Penilaian = $this->mPenilaian->getPenilaian($id,$penilai);
         if ($Penilaian){
             $this->response([
                 'status' => true,

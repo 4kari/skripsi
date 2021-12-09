@@ -10,11 +10,11 @@ class Sasaran extends REST_Controller{
         $this->load->model('Sasaran_model','mSasaran');
     }
     public function index_get(){
-        $id = $this->get('id');
-        if ($id == null) {
+        $tipe = $this->get('tipe');
+        if ($tipe == null) {
             $Sasaran = $this->mSasaran->getSasaran();
         } else{
-            $Sasaran = $this->mSasaran->getSasaran($id);
+            $Sasaran = $this->mSasaran->getSasaran($tipe);
         }
         if ($Sasaran){
             $this->response([
