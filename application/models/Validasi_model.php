@@ -46,7 +46,6 @@ class Validasi_model extends CI_Model{
         
         $skripsi = $this->db->get_where('Skripsi', ['id' => $data['id_skripsi']])->row_array();
         if($skripsi['status']==3){
-            var_dump($skripsi);
             $this->db->update('Skripsi',['status' =>4],['id'=>$skripsi['id']]);    
         }
         return $this->db->affected_rows();
