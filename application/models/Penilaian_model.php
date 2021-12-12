@@ -31,6 +31,11 @@ class Penilaian_model extends CI_Model{
             }
             $hasil=$hasil/7;
             $this->db->update('skripsi',array('nilai'=>$hasil),array('id'=>$data['id_skripsi']));
+            if($hasil>20){
+            $this->db->update('skripsi',array('status'=>7),array('id'=>$data['id_skripsi']));
+            }else{
+            $this->db->update('skripsi',array('status'=>8),array('id'=>$data['id_skripsi']));
+            }
         }
         return $this->db->affected_rows();
     }
