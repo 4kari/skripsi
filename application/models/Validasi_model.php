@@ -44,9 +44,10 @@ class Validasi_model extends CI_Model{
     public function createValidasi($data){
         $this->db->insert('Validasi',$data);
         
-        $skripsi = $this->db->get_where('Skripsi', ['id' => $id])->row_array();
+        $skripsi = $this->db->get_where('Skripsi', ['id' => $data['id_skripsi']])->row_array();
         if($skripsi['status']==3){
-            $this->db->update('Skripsi', $data, ['status' =>4]);    
+            var_dump($skripsi);
+            $this->db->update('Skripsi',['status' =>4],['id'=>$skripsi['id']]);    
         }
         return $this->db->affected_rows();
     }
