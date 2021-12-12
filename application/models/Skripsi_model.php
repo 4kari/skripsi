@@ -1,5 +1,15 @@
 <?php
 class Skripsi_model extends CI_Model{
+    // protected $ipSkripsi='http://10.5.12.21/skripsi/api/';
+    // protected $ipPenjadwalan='http://10.5.12.47/penjadwalan/api/';
+    // protected $ipDiskusi='http://10.5.12.56/diskusi/api/';
+    // protected $ipUser='http://10.5.12.26/user/api/';
+
+    protected $ipSkripsi='http://localhost/microservice/skripsi/api/';
+    protected $ipPenjadwalan='http://localhost/microservice/penjadwalan/api/';
+    protected $ipDiskusi='http://localhost/microservice/diskusi/api/';
+    protected $ipUser='http://localhost/microservice/user/api/';
+    
     public function getSkripsi(){
         $skripsi = $this->db->get('Skripsi')->result_array();
         $data = $this->olahSkripsi($skripsi);
@@ -36,12 +46,10 @@ class Skripsi_model extends CI_Model{
         return $data;
     }
     private function olahSkripsi($skripsi){
-        // $dosen = json_decode($this->curl->simple_get('http://10.5.12.26/user/api/dosen/', array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
-        // $mhs = json_decode($this->curl->simple_get('http://10.5.12.26/user/api/mahasiswa/', array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
         $topik =  $this->db->get('topik')->result_array();
         $status = $this->db->get('status')->result_array();
-        $dosen = json_decode($this->curl->simple_get('http://localhost/microservice/user/api/dosen/', array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
-        $mhs = json_decode($this->curl->simple_get('http://localhost/microservice/user/api/mahasiswa/', array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
+        $dosen = json_decode($this->curl->simple_get($this->ipUser.'dosen/', array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
+        $mhs = json_decode($this->curl->simple_get($this->ipUser.'mahasiswa/', array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
 
         $data = [];
         if ($skripsi){

@@ -1,5 +1,15 @@
 <?php
 class Validasi_model extends CI_Model{
+    // protected $ipSkripsi='http://10.5.12.21/skripsi/api/';
+    // protected $ipPenjadwalan='http://10.5.12.47/penjadwalan/api/';
+    // protected $ipDiskusi='http://10.5.12.56/diskusi/api/';
+    // protected $ipUser='http://10.5.12.26/user/api/';
+
+    protected $ipSkripsi='http://localhost/microservice/skripsi/api/';
+    protected $ipPenjadwalan='http://localhost/microservice/penjadwalan/api/';
+    protected $ipDiskusi='http://localhost/microservice/diskusi/api/';
+    protected $ipUser='http://localhost/microservice/user/api/';
+    
     public function getValidasi(){
         return $this->db->get('Validasi')->result_array();
     }
@@ -14,8 +24,7 @@ class Validasi_model extends CI_Model{
         $data = [];
         foreach($validasi as $v){        
             $v['data_skripsi']=$this->db->get_where('skripsi',['id'=>$v['id_skripsi']])->row_array(); //dapat data skripsi tiap validasi
-            $jadwal = json_decode($this->curl->simple_get('http://localhost/microservice/penjadwalan/api/Jadwal/',array('id_skripsi'=>$v['id_skripsi']), array(CURLOPT_BUFFERSIZE => 10)),true);
-            // $jadwal = json_decode($this->curl->simple_get('http://10.5.12.47/penjadwalan/api/Jadwal/',array('id_skripsi'=>$v['id_skripsi']), array(CURLOPT_BUFFERSIZE => 10)),true);
+            $jadwal = json_decode($this->curl->simple_get($this->ipPenjadwalan.'Jadwal/',array('id_skripsi'=>$v['id_skripsi']), array(CURLOPT_BUFFERSIZE => 10)),true);
             
             // var_dump($jadwal);
             // die();
