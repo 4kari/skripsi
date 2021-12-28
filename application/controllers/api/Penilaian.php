@@ -11,8 +11,7 @@ class Penilaian extends REST_Controller{
     }
     public function index_get(){
         $id = $this->get('id_skripsi');
-        $penilai = $this->get('penilai');
-        $Penilaian = $this->mPenilaian->getPenilaian($id,$penilai);
+        $Penilaian = $this->mPenilaian->getPenilaian($id);
         if ($Penilaian){
             $this->response([
                 'status' => true,

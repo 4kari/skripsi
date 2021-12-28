@@ -1,7 +1,11 @@
 <?php
 class Penilaian_model extends CI_Model{
-    public function getPenilaian($id=null,$penilai=null){
-        return $this->db->get_where('Skripsi', ['id' => $id])->row_array()['nilai'];
+    public function getPenilaian($id=null){
+        if($id==null){
+            return $this->db->get('Skripsi')->result_array();
+        }else{
+            return $this->db->get_where('Skripsi', ['id' => $id])->row_array()['nilai'];
+        }
     }
     public function createPenilaian($data,$nilai){
         $penilaian = $this->db->get_where('Penilaian',$data)->row_array();
