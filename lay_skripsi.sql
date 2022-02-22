@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Des 2021 pada 07.23
+-- Waktu pembuatan: 22 Feb 2022 pada 11.17
 -- Versi server: 10.4.19-MariaDB
 -- Versi PHP: 7.4.19
 
@@ -123,7 +123,49 @@ INSERT INTO `penilaian` (`id`, `id_skripsi`, `penilai`, `kode_penilaian`, `nilai
 (81, 4, '170411100042', 9, 78),
 (82, 4, '170411100042', 10, 95),
 (83, 4, '170411100042', 11, 83),
-(85, 4, '170411100042', 12, 81);
+(85, 4, '170411100042', 12, 81),
+(86, 6, '170411100042', 7, 80),
+(87, 6, '170411100042', 8, 80),
+(88, 6, '170411100042', 9, 80),
+(89, 6, '170411100042', 10, 80),
+(90, 6, '170411100042', 11, 80),
+(91, 6, '170411100042', 12, 80),
+(92, 6, '170411100042', 1, 80),
+(93, 6, '170411100042', 2, 80),
+(94, 6, '170411100042', 3, 80),
+(95, 6, '170411100042', 4, 80),
+(96, 6, '170411100042', 5, 80),
+(97, 6, '170411100042', 6, 80),
+(98, 6, '170411100024', 1, 80),
+(99, 6, '170411100024', 2, 80),
+(100, 6, '170411100024', 3, 80),
+(101, 6, '170411100024', 4, 80),
+(102, 6, '170411100024', 5, 80),
+(103, 6, '170411100024', 6, 80),
+(104, 6, '170411100024', 7, 80),
+(105, 6, '170411100024', 8, 80),
+(106, 6, '170411100024', 9, 80),
+(107, 6, '170411100024', 10, 80),
+(108, 6, '170411100024', 11, 80),
+(109, 6, '170411100024', 12, 80),
+(110, 6, '198002232008121001', 7, 80),
+(111, 6, '198002232008121001', 8, 80),
+(112, 6, '198002232008121001', 9, 80),
+(113, 6, '198002232008121001', 10, 80),
+(114, 6, '198002232008121001', 11, 80),
+(115, 6, '198002232008121001', 12, 80),
+(116, 6, '198101092006041003', 7, 80),
+(117, 6, '198101092006041003', 8, 80),
+(118, 6, '198101092006041003', 9, 80),
+(119, 6, '198101092006041003', 10, 80),
+(120, 6, '198101092006041003', 11, 80),
+(121, 6, '198101092006041003', 12, 80),
+(122, 6, '198609262014041001', 7, 80),
+(123, 6, '198609262014041001', 8, 80),
+(124, 6, '198609262014041001', 9, 80),
+(125, 6, '198609262014041001', 10, 80),
+(126, 6, '198609262014041001', 11, 80),
+(127, 6, '198609262014041001', 12, 80);
 
 -- --------------------------------------------------------
 
@@ -165,7 +207,6 @@ CREATE TABLE `skripsi` (
   `id` int(11) NOT NULL,
   `judul` varchar(64) DEFAULT NULL,
   `topik` int(11) NOT NULL,
-  `abstrak` varchar(128) DEFAULT NULL,
   `nim` varchar(12) NOT NULL,
   `pembimbing_1` varchar(18) DEFAULT NULL,
   `pembimbing_2` varchar(18) DEFAULT NULL,
@@ -174,18 +215,19 @@ CREATE TABLE `skripsi` (
   `penguji_3` varchar(18) DEFAULT NULL,
   `status` int(2) NOT NULL,
   `nilai` int(3) DEFAULT NULL,
-  `berkas` varchar(32) DEFAULT NULL
+  `berkas` varchar(128) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `skripsi`
 --
 
-INSERT INTO `skripsi` (`id`, `judul`, `topik`, `abstrak`, `nim`, `pembimbing_1`, `pembimbing_2`, `penguji_1`, `penguji_2`, `penguji_3`, `status`, `nilai`, `berkas`) VALUES
-(1, NULL, 1, NULL, '170411100099', '170411100042', '170411100024', '197406102008121002', '198002232008121001', '198609262014041001', 6, 91, 'percobaan'),
-(2, NULL, 1, NULL, '170411100119', '170411100042', '170411100024', NULL, NULL, NULL, 1, NULL, NULL),
-(3, NULL, 1, NULL, '170411100122', '170411100024', '170411100024', '170411100042', '170411100024', '170411100024', 5, NULL, NULL),
-(4, 'Klasifikasi Penyakit Daun Kentang Menggunakan Multiclass SVM', 2, NULL, '170411100106', '198002232008121001', '197406102008121002', '198101092006041003', '170411100042', '198609262014041001', 7, 90, 'asdasdasd');
+INSERT INTO `skripsi` (`id`, `judul`, `topik`, `nim`, `pembimbing_1`, `pembimbing_2`, `penguji_1`, `penguji_2`, `penguji_3`, `status`, `nilai`, `berkas`) VALUES
+(1, NULL, 1, '170411100099', '170411100042', '170411100024', '197406102008121002', '198002232008121001', '198609262014041001', 6, 91, 'percobaan'),
+(2, NULL, 1, '170411100119', '170411100042', '170411100024', NULL, NULL, NULL, 1, NULL, NULL),
+(3, NULL, 1, '170411100122', '170411100042', '170411100024', '197406102008121002', '198002232008121001', '198609262014041001', 5, NULL, NULL),
+(4, 'Klasifikasi Penyakit Daun Kentang Menggunakan Multiclass SVM', 2, '170411100106', '198002232008121001', '197406102008121002', '198101092006041003', '170411100042', '198609262014041001', 7, 90, 'asdasdasd'),
+(6, 'coba skripsi', 2, '170411100001', '170411100024', '170411100042', '198002232008121001', '198609262014041001', '198101092006041003', 7, 80, 'https://www.google.com/');
 
 -- --------------------------------------------------------
 
@@ -282,7 +324,9 @@ INSERT INTO `validasi` (`id`, `id_skripsi`, `pembimbing_1`, `pembimbing_2`, `pen
 (2, 1, '170411100042', '170411100024', NULL, NULL, NULL, 2),
 (3, 1, '170411100042', '170411100024', NULL, NULL, NULL, 3),
 (4, 4, '198002232008121001', '197406102008121002', NULL, NULL, NULL, 2),
-(10, 4, '198002232008121001', '197406102008121002', NULL, NULL, NULL, 3);
+(10, 4, '198002232008121001', '197406102008121002', NULL, NULL, NULL, 3),
+(11, 6, '170411100024', '170411100042', NULL, NULL, NULL, 2),
+(12, 6, '170411100024', '170411100042', NULL, NULL, NULL, 3);
 
 --
 -- Indexes for dumped tables
@@ -333,7 +377,9 @@ ALTER TABLE `topik`
 -- Indeks untuk tabel `validasi`
 --
 ALTER TABLE `validasi`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `skripsi` (`id_skripsi`),
+  ADD KEY `tipe` (`tipe`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
@@ -343,7 +389,7 @@ ALTER TABLE `validasi`
 -- AUTO_INCREMENT untuk tabel `penilaian`
 --
 ALTER TABLE `penilaian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
 
 --
 -- AUTO_INCREMENT untuk tabel `sasaran`
@@ -355,7 +401,7 @@ ALTER TABLE `sasaran`
 -- AUTO_INCREMENT untuk tabel `skripsi`
 --
 ALTER TABLE `skripsi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `status`
@@ -379,7 +425,7 @@ ALTER TABLE `topik`
 -- AUTO_INCREMENT untuk tabel `validasi`
 --
 ALTER TABLE `validasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -404,6 +450,13 @@ ALTER TABLE `sasaran`
 ALTER TABLE `skripsi`
   ADD CONSTRAINT `skripsi_status` FOREIGN KEY (`status`) REFERENCES `status` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `skripsi_topik` FOREIGN KEY (`topik`) REFERENCES `topik` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `validasi`
+--
+ALTER TABLE `validasi`
+  ADD CONSTRAINT `skripsi` FOREIGN KEY (`id_skripsi`) REFERENCES `skripsi` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tipe` FOREIGN KEY (`tipe`) REFERENCES `tipe` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
